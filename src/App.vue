@@ -3,8 +3,14 @@
     <section class="sidebar-menu-wrapper">
       <sidebarMenu></sidebarMenu>
     </section>
-    <section class="bank-account-info-wrapper"></section>
-    <section class="graph-wrapper"></section>
+
+    <section class="bank-account-info-wrapper">
+      <bankAccountInfoVue></bankAccountInfoVue>
+    </section>
+
+    <section class="grouped-bar-graph-wrapper">
+      <groupedBarGraph></groupedBarGraph>
+    </section>
 
     <section class="report-cards-wrapper">
       <report-card title="Total Income" sum="6437.45"></report-card>
@@ -26,6 +32,8 @@ import "./normalize.css";
 import reportCard from "./components/report-card.vue";
 import transactionHistory from "./components/transaction-history.vue";
 import sidebarMenu from "./components/sidebar-menu.vue";
+import bankAccountInfoVue from "./components/bank-account-info.vue";
+import groupedBarGraph from "./components/grouped-bar-graph.vue";
 
 export default {
   name: "App",
@@ -34,6 +42,8 @@ export default {
     reportCard,
     transactionHistory,
     sidebarMenu,
+    bankAccountInfoVue,
+    groupedBarGraph,
   },
 };
 </script>
@@ -44,11 +54,12 @@ export default {
 body {
   background: #f4f3fa;
   font-family: "Montserrat";
+  padding-top: 20px;
 }
 
 .main {
   display: grid;
-  grid-template-columns: 0.5fr repeat(2, 1fr);
+  grid-template-columns: 1fr 2fr 2fr;
   grid-template-rows: 1fr 0.5fr 1.5fr;
   grid-column-gap: 10px;
   grid-row-gap: 20px;
@@ -63,11 +74,10 @@ body {
 }
 .bank-account-info-wrapper {
   grid-area: 1 / 2 / 2 / 3;
-  background: #9896963f;
 }
-.graph-wrapper {
+.grouped-bar-graph-wrapper {
   grid-area: 1 / 3 / 2 / 4;
-  background: #9896963f;
+  background: white;
 }
 .report-cards-wrapper {
   display: flex;

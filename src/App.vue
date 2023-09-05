@@ -23,7 +23,9 @@
       <transactionHistory></transactionHistory>
     </section>
 
-    <section class="monthly-stats-wrapper"></section>
+    <section class="monthly-stats-wrapper">
+      <monthly-stats></monthly-stats>
+    </section>
   </main>
 </template>
 
@@ -34,6 +36,7 @@ import transactionHistory from "./components/transaction-history.vue";
 import sidebarMenu from "./components/sidebar-menu.vue";
 import bankAccountInfoVue from "./components/bank-account-info.vue";
 import groupedBarGraph from "./components/grouped-bar-graph.vue";
+import monthlyStats from "./components/monthly-stats";
 
 export default {
   name: "App",
@@ -44,6 +47,7 @@ export default {
     sidebarMenu,
     bankAccountInfoVue,
     groupedBarGraph,
+    monthlyStats,
   },
 };
 </script>
@@ -59,13 +63,11 @@ body {
 
 .main {
   display: grid;
-  grid-template-columns: 1fr 2fr 2fr;
+  grid-template-columns: 0.5fr repeat(2, 1fr);
   grid-template-rows: 1fr 0.5fr 1.5fr;
   grid-column-gap: 10px;
   grid-row-gap: 20px;
-
   margin-right: 24px;
-
   min-height: 100vh;
 }
 
@@ -89,6 +91,5 @@ body {
 }
 .monthly-stats-wrapper {
   grid-area: 3 / 3 / 4 / 4;
-  background: #9896963f;
 }
 </style>

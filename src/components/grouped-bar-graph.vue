@@ -1,8 +1,5 @@
 <template>
-  <section class="c">
-    <h2>Report</h2>
-    <Bar id="my-chart-id" :optwions="chartOptions" :data="chartData" />
-  </section>
+
 </template>
 
 <script>
@@ -31,6 +28,7 @@ export default {
   components: { Bar },
   data() {
     return {
+      chartId: "my-chart-id",
       chartData: {
         labels: ["April", "May", "June", "July", "August", "September"],
         datasets: [
@@ -47,26 +45,30 @@ export default {
         ],
       },
       chartOptions: {
+        responsive: true,
+        maintainAspectRatio: false,
         borderRadius: 5,
-        aspectRatio: [2, 2],
       },
     };
   },
 };
 </script>
 
-<style>
-#my-chart-id {
+<style scoped>
+.title {
+  margin: 0;
+  padding: 0;
 }
 
 .c {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
+  position: relative;
+  margin: auto;
+  padding: 20px;
+}
 
-  padding: 24px;
-
-  width: 90%;
-  height: 90%;
+.chart-container {
+  position: relative;
+  width: 100%; 
+  height: 24vh;
 }
 </style>

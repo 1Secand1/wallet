@@ -80,7 +80,7 @@ body {
   display: grid;
   grid-template-columns: minmax(0, 0.5fr) minmax(0, 1fr) minmax(0, 1fr);
   grid-template-rows: 1fr 0.5fr 1.5fr;
-  grid-column-gap: 10px;
+  grid-column-gap: 20px;
   grid-row-gap: 20px;
 
   margin-right: 24px;

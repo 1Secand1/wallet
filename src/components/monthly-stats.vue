@@ -1,5 +1,5 @@
 <template>
-  <div class="">
+  <div class="monthly-stats">
     <Doughnut :data="data" :options="options" />
   </div>
 </template>
@@ -7,7 +7,6 @@
 <script>
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Doughnut } from "vue-chartjs";
-
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 export default {
@@ -15,16 +14,16 @@ export default {
   components: {
     Doughnut,
   },
+  props: ["labels", "data", "backgroundColor"],
+
   data() {
     return {
       data: {
-        labels: ["Кофты", "Обувь", "Ещё что-то"],
+        labels: this.labels,
         datasets: [
           {
-            backgroundColor: ["#41B883", "#00D8FF", "#DD1B16"],
-            weight: 1,
-
-            data: [450, 220, 800],
+            data: this.data,
+            backgroundColor: this.backgroundColor,
           },
         ],
       },
@@ -36,3 +35,12 @@ export default {
   },
 };
 </script>
+<style>
+.monthly-stats {
+  height: 100%;
+
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 20px;
+}
+</style>

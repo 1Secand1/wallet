@@ -9,7 +9,19 @@
     </section>
 
     <section class="grouped-bar-graph-wrapper">
-      <groupedBarGraph></groupedBarGraph>
+      <groupedBarGraph
+        :labels="[`April`, `May`, `June`, `July`, `August`, `September`]"
+        :firstDataSet="[
+          `Доход`,
+          [8120, 8510, 6042, 7510, 9505, 10043],
+          `#4C49ED`,
+        ]"
+        :secondDataSet="[
+          `Расход`,
+          [3400, 5501, 9230, 4841, 7041, 7560],
+          `#AFAEFE`,
+        ]"
+      />
     </section>
 
     <section class="report-cards-wrapper">
@@ -24,7 +36,11 @@
     </section>
 
     <section class="monthly-stats-wrapper">
-      <monthly-stats></monthly-stats>
+      <monthly-stats
+        :labels="['Кофты', 'Обувь', 'Ещё что-то']"
+        :data="[450, 220, 800]"
+        :backgroundColor="['#41B883', '#00D8FF', '#DD1B16']"
+      />
     </section>
   </main>
 </template>
@@ -58,17 +74,17 @@ export default {
 body {
   background: #f4f3fa;
   font-family: "Montserrat";
-  padding-top: 20px;
 }
 
 .main {
   display: grid;
-  grid-template-columns: 0.5fr repeat(2, 1fr);
+  grid-template-columns: minmax(0, 0.5fr) minmax(0, 1fr) minmax(0, 1fr);
   grid-template-rows: 1fr 0.5fr 1.5fr;
   grid-column-gap: 10px;
   grid-row-gap: 20px;
+
   margin-right: 24px;
-  min-height: 100vh;
+  height: 100vh;
 }
 
 .sidebar-menu-wrapper {
@@ -79,7 +95,6 @@ body {
 }
 .grouped-bar-graph-wrapper {
   grid-area: 1 / 3 / 2 / 4;
-  background: white;
 }
 .report-cards-wrapper {
   display: flex;

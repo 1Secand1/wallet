@@ -1,5 +1,10 @@
 <template>
-
+  <section class="grouped-bar-graph">
+    <h2 class="title">Report</h2>
+    <div class="chart-container">
+      <Bar :id="chartId" :options="chartOptions" :data="chartData" />
+    </div>
+  </section>
 </template>
 
 <script>
@@ -26,27 +31,34 @@ ChartJS.register(
 export default {
   name: "BarChart",
   components: { Bar },
+  props: ["labels", "firstDataSet", "secondDataSet"],
+
   data() {
     return {
       chartId: "my-chart-id",
       chartData: {
-        labels: ["April", "May", "June", "July", "August", "September"],
+        labels: this.labels,
         datasets: [
           {
-            label: "Доход",
-            data: [8120, 8510, 6042, 7510, 9505, 10043],
-            backgroundColor: "#4C49ED",
+            label: this.firstDataSet[0],
+            data: this.firstDataSet[1],
+            backgroundColor: this.firstDataSet[2],
           },
           {
-            label: "Расход",
-            data: [3400, 5501, 9230, 4841, 7041, 7560],
-            backgroundColor: "#AFAEFE",
+            label: this.secondDataSet[0],
+            data: this.secondDataSet[1],
+            backgroundColor: this.secondDataSet[2],
           },
         ],
       },
       chartOptions: {
         responsive: true,
         maintainAspectRatio: false,
+
+        onResize(chart, size) {
+          chart.update();
+        },
+
         borderRadius: 5,
       },
     };
@@ -60,15 +72,14 @@ export default {
   padding: 0;
 }
 
-.c {
-  position: relative;
-  margin: auto;
+.grouped-bar-graph {
+  background: white;
+  border-radius: 20px;
   padding: 20px;
 }
 
 .chart-container {
-  position: relative;
-  width: 100%; 
+  width: 100%;
   height: 24vh;
 }
 </style>

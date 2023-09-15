@@ -37,6 +37,7 @@
   height: 100%;
 
   background: white;
+  border-radius: 20px;
 
   &::before {
     content: "";

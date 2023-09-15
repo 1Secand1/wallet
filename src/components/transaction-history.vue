@@ -38,7 +38,7 @@ export default {
   height: 100%;
 
   background: white;
-  border-radius: 11px;
+  border-radius: 20px;
 
   padding: 24px 25px;
   &__header {

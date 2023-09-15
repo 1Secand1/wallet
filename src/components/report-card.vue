@@ -26,8 +26,8 @@ export default {
 .card {
   display: grid;
 
-  max-width: 260px;
   max-height: 140px;
+
   height: 100%;
   width: 100%;
 

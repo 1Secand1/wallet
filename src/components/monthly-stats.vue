@@ -1,6 +1,8 @@
 <template>
   <div class="monthly-stats">
-    <Doughnut :data="data" :options="options" />
+    <div class="monthly-schedule">
+      <Doughnut :data="data" :options="options" />
+    </div>
   </div>
 </template>
 
@@ -37,10 +39,17 @@ export default {
 </script>
 <style>
 .monthly-stats {
+  display: flex;
+  align-items: center;
+
   height: 100%;
 
   background: #ffffff;
   border-radius: 20px;
+
   padding: 20px;
+}
+.monthly-schedule {
+  width: 100%;
 }
 </style>

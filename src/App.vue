@@ -79,11 +79,11 @@ body {
 .main {
   display: grid;
   grid-template-columns: minmax(0, 0.5fr) minmax(0, 1fr) minmax(0, 1fr);
-  grid-template-rows: 1fr 0.5fr 1.5fr;
+  grid-template-rows: minmax(267px, 1fr) minmax(145px, 0.7fr) minmax(0, 2fr);
   grid-column-gap: 20px;
   grid-row-gap: 20px;
 
-  margin-right: 24px;
+  padding: 20px 20px 0 0;
   height: 100vh;
 }
 
@@ -91,13 +91,19 @@ body {
   grid-area: 1 / 1 / 4 / 2;
 }
 .bank-account-info-wrapper {
+  // max-height: 267px;
   grid-area: 1 / 2 / 2 / 3;
 }
 .grouped-bar-graph-wrapper {
+  // max-height: 267px;
   grid-area: 1 / 3 / 2 / 4;
 }
 .report-cards-wrapper {
   display: flex;
+  align-items: center;
+
+  column-gap: 20px;
+
   justify-content: space-between;
   grid-area: 2 / 2 / 3 / 4;
 }

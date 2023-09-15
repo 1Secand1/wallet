@@ -38,6 +38,7 @@
 
   background: white;
   border-radius: 20px;
+  box-shadow: 8px 13px 44px -6px #dfdbf6;
 
   &::before {
     content: "";
@@ -91,6 +92,9 @@
   }
 
   &__last-transaction-butons {
+    display: flex;
+
+    column-gap: 5px;
     margin-top: 15px;
   }
   &__last-transaction-button {

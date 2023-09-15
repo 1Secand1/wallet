@@ -55,10 +55,6 @@ export default {
         responsive: true,
         maintainAspectRatio: false,
 
-        onResize(chart, size) {
-          chart.update();
-        },
-
         borderRadius: 5,
       },
     };
@@ -75,11 +71,13 @@ export default {
 .grouped-bar-graph {
   background: white;
   border-radius: 20px;
+
   padding: 20px;
+  height: 100%;
 }
 
 .chart-container {
   width: 100%;
-  height: 24vh;
+  height: 90%;
 }
 </style>

@@ -1,6 +1,6 @@
 import { createApp } from "vue";
 import App from "./App.vue";
-import Authorization from "./Authorization.vue";
+import Authenticator from "./Authenticator.vue";
 
-createApp(App).mount("#app");
-// createApp(Authorization).mount("#app");
+// createApp(App).mount("#app");
+createApp(Authenticator).mount("#app");

@@ -91,11 +91,9 @@ body {
   grid-area: 1 / 1 / 4 / 2;
 }
 .bank-account-info-wrapper {
-  // max-height: 267px;
   grid-area: 1 / 2 / 2 / 3;
 }
 .grouped-bar-graph-wrapper {
-  // max-height: 267px;
   grid-area: 1 / 3 / 2 / 4;
 }
 .report-cards-wrapper {

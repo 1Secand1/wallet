@@ -6,25 +6,29 @@
       <li class="form__row-box">
         <input
           @input="runNumberCrunching($event)"
-          @click.prevent="focusInput"
+          @click.prevent="focusCurrentInput"
+          maxlength="1"
           class="form__field form__input-confirmation-code"
           type="text"
         />
         <input
           @input="runNumberCrunching($event)"
-          @click.prevent="focusInput"
+          @click.prevent="focusCurrentInput"
+          maxlength="1"
           class="form__field form__input-confirmation-code"
           type="text"
         />
         <input
           @input="runNumberCrunching($event)"
-          @click.prevent="focusInput"
+          @click.prevent="focusCurrentInput"
+          maxlength="1"
           class="form__field form__input-confirmation-code"
           type="text"
         />
         <input
           @input="runNumberCrunching($event)"
-          @click.prevent="focusInput"
+          @click.prevent="focusCurrentInput"
+          maxlength="1"
           class="form__field form__input-confirmation-code"
           type="text"
         />
@@ -49,40 +53,75 @@ export default {
 
   mounted() {
     this.findInputElements();
+    this.lockInputs();
   },
   methods: {
-    runNumberCrunching(event) {
-      this.confirmationСode.push(event.data);
+    runNumberCrunching({ target }) {
+      if (target.value === "" || isNaN(target.value)) {
+        target.value = "";
+        return;
+      }
+
+      this.confirmationСode.push(target.value);
 
       this.currentInput++;
 
       if (this.currentInput < 4) {
-        this.focusInput();
+        this.nextInput();
         return;
       }
 
-      let confirmationСode = +this.confirmationСode.join("");
+      let confirmationСode = this.confirmationСode.join("");
 
-      if (confirmationСode == 1234) {
-        alert("Верный код !");
+      if (confirmationСode == "1234") {
+        //переход на след страницу
+        this.runIfCodeIsWrong(confirmationСode);
       } else {
-        alert(`Код ${confirmationСode} неверный`);
-
-        this.inputElements.forEach((input) => {
-          input.value = "";
-          this.currentInput = 0;
-        });
-        this.confirmationСode = [];
-        this.inputElements[0].focus();
+        this.runIfCodeIsCorrect(confirmationСode);
       }
     },
+
+    runIfCodeIsCorrect(confirmationСode) {
+      alert(`Код ${confirmationСode} неверный`);
+
+      this.inputElements.forEach((input) => {
+        input.value = "";
+      });
+      this.currentInput = 0;
+      this.confirmationСode = [];
+      this.inputElements[0].removeAttribute("readonly");
+      this.focusCurrentInput();
+    },
+    runIfCodeIsWrong(confirmationСode) {
+      alert(`Код ${confirmationСode} верный !`);
+    },
+
+    focusCurrentInput() {
+      this.inputElements[this.currentInput].focus();
+    },
+
+    nextInput() {
+      this.inputElements[this.currentInput].removeAttribute("readonly");
+
+      this.focusCurrentInput();
+
+      if (this.currentInput > 0) {
+        this.inputElements[this.currentInput - 1].setAttribute("readonly", "");
+      }
+    },
+
     findInputElements() {
       this.inputElements = document.querySelectorAll(
         ".form__input-confirmation-code"
       );
     },
-    focusInput() {
-      this.inputElements[this.currentInput].focus();
+
+    lockInputs() {
+      this.inputElements.forEach((input, index) => {
+        if (index != 0) {
+          input.setAttribute("readonly", "true");
+        }
+      });
     },
   },
 };

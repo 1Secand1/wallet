@@ -5,29 +5,37 @@
     <ul class="form__list-fields">
       <li class="form__row-box">
         <input
-          @input="runNumberCrunching($event)"
+          @input="handleCodeEntry($event)"
           @click.prevent="focusCurrentInput"
+          inputmode="numeric"
+          pattern="[0-9]*"
           maxlength="1"
           class="form__field form__input-confirmation-code"
           type="text"
         />
         <input
-          @input="runNumberCrunching($event)"
+          @input="handleCodeEntry($event)"
           @click.prevent="focusCurrentInput"
+          inputmode="numeric"
+          pattern="[0-9]*"
           maxlength="1"
           class="form__field form__input-confirmation-code"
           type="text"
         />
         <input
-          @input="runNumberCrunching($event)"
+          @input="handleCodeEntry($event)"
           @click.prevent="focusCurrentInput"
+          inputmode="numeric"
+          pattern="[0-9]*"
           maxlength="1"
           class="form__field form__input-confirmation-code"
           type="text"
         />
         <input
-          @input="runNumberCrunching($event)"
+          @input="handleCodeEntry($event)"
           @click.prevent="focusCurrentInput"
+          inputmode="numeric"
+          pattern="[0-9]*"
           maxlength="1"
           class="form__field form__input-confirmation-code"
           type="text"
@@ -42,7 +50,11 @@
 </template>
 
 <script>
+import AuthCodeInputField from "./AuthCodeInputField.vue";
 export default {
+  components: {
+    AuthCodeInputField,
+  },
   data() {
     return {
       inputElements: [],
@@ -54,61 +66,64 @@ export default {
   mounted() {
     this.findInputElements();
     this.lockInputs();
+    this.focusCurrentInput();
   },
+
   methods: {
-    runNumberCrunching({ target }) {
-      if (target.value === "" || isNaN(target.value)) {
+    handleCodeEntry({ target }) {
+      if (target.value === " " || isNaN(target.value)) {
         target.value = "";
         return;
       }
 
       this.confirmationСode.push(target.value);
 
-      this.currentInput++;
+      if (this.currentInput === this.inputElements.length - 1) {
+        let confirmationСode = this.confirmationСode.join("");
 
-      if (this.currentInput < 4) {
-        this.nextInput();
-        return;
+        if (confirmationСode == "1234") {
+          //переход на след страницу
+          this.runIfCodeIsWrong(confirmationСode);
+        } else {
+          this.runIfCodeIsCorrect(confirmationСode);
+        }
       }
 
-      let confirmationСode = this.confirmationСode.join("");
+      this.nextInput();
+    },
 
-      if (confirmationСode == "1234") {
-        //переход на след страницу
-        this.runIfCodeIsWrong(confirmationСode);
-      } else {
-        this.runIfCodeIsCorrect(confirmationСode);
+    nextInput() {
+      this.currentInput++;
+
+      if (this.currentInput < this.inputElements.length) {
+        this.inputElements[this.currentInput].readOnly = false;
+        this.focusCurrentInput();
+      }
+
+      if (this.currentInput > 0) {
+        this.inputElements[this.currentInput - 1].readOnly = true;
+      }
+
+      if (this.currentInput == this.inputElements.length) {
+        this.inputElements.forEach((input) => {
+          input.value = "";
+        });
+        this.currentInput = 0;
+        this.confirmationСode = [];
+        this.inputElements[0].readOnly = false;
+        this.focusCurrentInput();
       }
     },
 
     runIfCodeIsCorrect(confirmationСode) {
       alert(`Код ${confirmationСode} неверный`);
-
-      this.inputElements.forEach((input) => {
-        input.value = "";
-      });
-      this.currentInput = 0;
-      this.confirmationСode = [];
-      this.inputElements[0].removeAttribute("readonly");
-      this.focusCurrentInput();
     },
-    
     runIfCodeIsWrong(confirmationСode) {
       alert(`Код ${confirmationСode} верный !`);
     },
 
     focusCurrentInput() {
       this.inputElements[this.currentInput].focus();
-    },
-
-    nextInput() {
-      this.inputElements[this.currentInput].removeAttribute("readonly");
-
-      this.focusCurrentInput();
-
-      if (this.currentInput > 0) {
-        this.inputElements[this.currentInput - 1].setAttribute("readonly", "");
-      }
     },
 
     findInputElements() {
@@ -120,7 +135,7 @@ export default {
     lockInputs() {
       this.inputElements.forEach((input, index) => {
         if (index != 0) {
-          input.setAttribute("readonly", "true");
+          input.readOnly = true;
         }
       });
     },

@@ -47,11 +47,11 @@
 
 <script>
 import "./normalize.css";
-import reportCard from "./components/report-card.vue";
+import reportCard from "./components/AppReportCard.vue";
 import transactionHistory from "./components/transaction-history.vue";
-import sidebarMenu from "./components/sidebar-menu.vue";
-import bankAccountInfoVue from "./components/bank-account-info.vue";
-import groupedBarGraph from "./components/grouped-bar-graph.vue";
+import sidebarMenu from "./components/AppSidebarMenu.vue";
+import bankAccountInfoVue from "./components/bankAccountInfo.vue";
+import groupedBarGraph from "./components/groupedBarGraph.vue";
 import monthlyStats from "./components/monthly-stats";
 
 export default {

@@ -16,9 +16,9 @@
 </template>
 
 <script>
-import authorization from "./components/authorization.vue";
-import registration from "./components/registration.vue";
-import inputConfirmationСode from "./components/inputConfirmationСode.vue";
+import authorization from "./components/AuthLoginForm.vue";
+import registration from "./components/AuthRegistrationForm.vue";
+import inputConfirmationСode from "./components/AuthConfirmationСodeForm.vue";
 
 export default {
   components: {

@@ -92,6 +92,7 @@ export default {
       this.inputElements[0].removeAttribute("readonly");
       this.focusCurrentInput();
     },
+    
     runIfCodeIsWrong(confirmationСode) {
       alert(`Код ${confirmationСode} верный !`);
     },

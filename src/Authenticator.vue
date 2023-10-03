@@ -1,15 +1,15 @@
 <template>
   <div style="position: absolute">
-    <select name="pets" id="pet-select" v-model="displayСomponent">
+    <select name="pets" id="pet-select" v-model="displayComponent">
       <option value="authorization">Авторизация</option>
       <option value="registration">Регистрация</option>
-      <option value="inputConfirmationСode">Подтверждение кода</option>
+      <option value="inputConfirmationCode">Подтверждение кода</option>
     </select>
   </div>
   <main class="form-wrapper">
     <keep-alive>
       <Transition name="form" mode="out-in">
-        <component :is="displayСomponent" />
+        <component :is="displayComponent" />
       </Transition>
     </keep-alive>
   </main>
@@ -18,18 +18,18 @@
 <script>
 import authorization from "./components/AuthLoginForm.vue";
 import registration from "./components/AuthRegistrationForm.vue";
-import inputConfirmationСode from "./components/AuthConfirmationСodeForm.vue";
+import inputConfirmationCode from "./components/AuthConfirmationСodeForm.vue";
 
 export default {
   components: {
     authorization,
     registration,
-    inputConfirmationСode,
+    inputConfirmationCode,
   },
 
   data() {
     return {
-      displayСomponent: "inputConfirmationСode",
+      displayComponent: "inputConfirmationCode",
     };
   },
 };

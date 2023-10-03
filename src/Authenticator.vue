@@ -1,39 +1,14 @@
 <template>
-  <div style="position: absolute">
-    <select name="pets" id="pet-select" v-model="displayComponent">
-      <option value="authAuthorizationForm">Авторизация</option>
-      <option value="authRegistrationForm">Регистрация</option>
-      <option value="authConfirmationСodeForm">Подтверждение кода</option>
-    </select>
-  </div>
   <main class="form-wrapper">
-    <keep-alive>
-      <Transition name="form" mode="out-in">
-        <component :is="displayComponent" />
-      </Transition>
-    </keep-alive>
+    <router-view v-slot="{ Component }">
+      <transition name="form" mode="out-in">
+        <keep-alive>
+          <component :is="Component" />
+        </keep-alive>
+      </transition>
+    </router-view>
   </main>
 </template>
-
-<script>
-import authAuthorizationForm from "./components/AuthLoginForm.vue";
-import authRegistrationForm from "./components/AuthRegistrationForm.vue";
-import authConfirmationСodeForm from "./components/AuthConfirmationСodeForm.vue";
-
-export default {
-  components: {
-    authAuthorizationForm,
-    authRegistrationForm,
-    authConfirmationСodeForm,
-  },
-
-  data() {
-    return {
-      displayComponent: "authConfirmationСodeForm",
-    };
-  },
-};
-</script>
 
 <style lang="scss">
 body {

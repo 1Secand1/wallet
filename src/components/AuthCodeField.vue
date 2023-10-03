@@ -2,18 +2,8 @@
   <ul class="form__list-fields">
     <li class="form__row-box">
       <AuthCodeInputField
-        @input="handleCodeEntry($event)"
-        @click.prevent="focusCurrentInput"
-      />
-      <AuthCodeInputField
-        @input="handleCodeEntry($event)"
-        @click.prevent="focusCurrentInput"
-      />
-      <AuthCodeInputField
-        @input="handleCodeEntry($event)"
-        @click.prevent="focusCurrentInput"
-      />
-      <AuthCodeInputField
+        v-for="input in 5"
+        :key="input"
         @input="handleCodeEntry($event)"
         @click.prevent="focusCurrentInput"
       />
@@ -79,14 +69,6 @@ export default {
         this.inputElements[0].readOnly = false;
         this.focusCurrentInput();
       }
-    },
-
-    runIfCodeIsCorrect(confirmationСode) {
-      alert(`Код ${confirmationСode} неверный`);
-    },
-
-    runIfCodeIsWrong(confirmationСode) {
-      alert(`Код ${confirmationСode} верный !`);
     },
 
     focusCurrentInput() {

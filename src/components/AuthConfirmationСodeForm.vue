@@ -1,6 +1,6 @@
 <template>
-  <form class="form" @submit.prevent="submitHandler" action="">
-    <p @click="foo">Код подтверждения</p>
+  <form class="form" @submit.prevent="submitHandler">
+    <p>Код подтверждения</p>
 
     <AuthCodeField @confirmationCodeEntered="validateCodeEntry" />
 

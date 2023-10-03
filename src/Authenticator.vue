@@ -1,9 +1,9 @@
 <template>
   <div style="position: absolute">
     <select name="pets" id="pet-select" v-model="displayComponent">
-      <option value="authorization">Авторизация</option>
-      <option value="registration">Регистрация</option>
-      <option value="inputConfirmationCode">Подтверждение кода</option>
+      <option value="authAuthorizationForm">Авторизация</option>
+      <option value="authRegistrationForm">Регистрация</option>
+      <option value="authConfirmationСodeForm">Подтверждение кода</option>
     </select>
   </div>
   <main class="form-wrapper">
@@ -16,20 +16,20 @@
 </template>
 
 <script>
-import authorization from "./components/AuthLoginForm.vue";
-import registration from "./components/AuthRegistrationForm.vue";
-import inputConfirmationCode from "./components/AuthConfirmationСodeForm.vue";
+import authAuthorizationForm from "./components/AuthLoginForm.vue";
+import authRegistrationForm from "./components/AuthRegistrationForm.vue";
+import authConfirmationСodeForm from "./components/AuthConfirmationСodeForm.vue";
 
 export default {
   components: {
-    authorization,
-    registration,
-    inputConfirmationCode,
+    authAuthorizationForm,
+    authRegistrationForm,
+    authConfirmationСodeForm,
   },
 
   data() {
     return {
-      displayComponent: "inputConfirmationCode",
+      displayComponent: "authConfirmationСodeForm",
     };
   },
 };

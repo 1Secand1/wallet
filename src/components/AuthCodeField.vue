@@ -2,7 +2,7 @@
   <ul class="form__list-fields">
     <li class="form__row-box">
       <AuthCodeInputField
-        v-for="input in 5"
+        v-for="input in 4"
         :key="input"
         @input="handleCodeEntry($event)"
         @click.prevent="focusCurrentInput"

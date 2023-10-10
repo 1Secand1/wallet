@@ -1,13 +1,15 @@
-import { createRouter, createWebHashHistory, createWebHistory } from "vue-router";
+import { createRouter, createWebHistory } from "vue-router";
 
-import authAuthorizationForm from "./components/AuthLoginForm.vue";
-import authRegistrationForm from "./components/AuthRegistrationForm.vue";
-import authConfirmationСodeForm from "./components/AuthConfirmationСodeForm.vue";
+import authAuthorizationForm from "./router/Login.vue";
+import authRegistrationForm from "./router/Registration.vue";
+import authConfirmationСodeForm from "./router/ConfirmationСode.vue";
+import Dashboard from "./router/Dashboard.vue";
 
 const routes = [
   { path: "/login", component: authAuthorizationForm, alias: "/" },
   { path: "/register", component: authRegistrationForm },
   { path: "/confirmation", component: authConfirmationСodeForm },
+  { path: "/Dashboard", component: Dashboard },
 ];
 
 const router = createRouter({

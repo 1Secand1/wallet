@@ -1,21 +1,26 @@
 <template>
-  <form class="form" @submit.prevent="submitHandler">
-    <p>Код подтверждения</p>
+  <AuthFormWrapperVue>
+    <form class="form" @submit.prevent="submitHandler">
+      <p>Код подтверждения</p>
 
-    <AuthCodeField @confirmationCodeEntered="validateCodeEntry" />
+      <AuthCodeField @confirmationCodeEntered="validateCodeEntry" />
 
-    <button class="form__btn form__btn-repeated-request" type="submit">
-      Отправить повторно
-    </button>
-  </form>
+      <button class="form__btn form__btn-repeated-request" type="submit">
+        Отправить повторно
+      </button>
+    </form>
+  </AuthFormWrapperVue>
 </template>
 
 <script>
-import AuthCodeField from "./AuthCodeField.vue";
+import AuthCodeField from "../components/AuthCodeField.vue";
+import AuthFormWrapperVue from "../components/AuthFormWrapper.vue";
 export default {
   components: {
     AuthCodeField,
+    AuthFormWrapperVue,
   },
+
   data() {
     return {};
   },
@@ -31,10 +36,12 @@ export default {
 
     runIfCodeIsCorrect(confirmationСode) {
       alert(`Код ${confirmationСode} неверный`);
+      this.$router.push("/register");
     },
 
     runIfCodeIsWrong(confirmationСode) {
       alert(`Код ${confirmationСode} верный !`);
+      this.$router.push("/login");
     },
   },
 };

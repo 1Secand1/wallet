@@ -1,114 +1,114 @@
 <template>
-  <main class="main">
-    <section class="sidebar-menu-wrapper">
-      <sidebarMenu></sidebarMenu>
-    </section>
-
-    <section class="bank-account-info-wrapper">
-      <bankAccountInfoVue></bankAccountInfoVue>
-    </section>
-
-    <section class="grouped-bar-graph-wrapper">
-      <groupedBarGraph
-        :labels="[`April`, `May`, `June`, `July`, `August`, `September`]"
-        :firstDataSet="[
-          `Доход`,
-          [8120, 8510, 6042, 7510, 9505, 10043],
-          `#4C49ED`,
-        ]"
-        :secondDataSet="[
-          `Расход`,
-          [3400, 5501, 9230, 4841, 7041, 7560],
-          `#AFAEFE`,
-        ]"
-      />
-    </section>
-
-    <section class="report-cards-wrapper">
-      <report-card title="Total Income" sum="6437.45"></report-card>
-      <report-card title="Total Income" sum="232.41"></report-card>
-      <report-card title="Total Income" sum="546.23"></report-card>
-      <report-card title="Total Income" sum="32.34"></report-card>
-    </section>
-
-    <section class="transaction-history-wrapper">
-      <transactionHistory></transactionHistory>
-    </section>
-
-    <section class="monthly-stats-wrapper">
-      <monthly-stats
-        :labels="['Кофты', 'Обувь', 'Ещё что-то']"
-        :data="[450, 220, 800]"
-        :backgroundColor="['#41B883', '#00D8FF', '#DD1B16']"
-      />
-    </section>
-  </main>
+    <router-view v-slot="{ Component }">
+      <transition name="form" mode="out-in">
+        <keep-alive>
+          <component :is="Component" />
+        </keep-alive>
+      </transition>
+    </router-view>
 </template>
 
 <script>
-import "./normalize.css";
-import reportCard from "./components/AppReportCard.vue";
-import transactionHistory from "./components/transaction-history.vue";
-import sidebarMenu from "./components/AppSidebarMenu.vue";
-import bankAccountInfoVue from "./components/bankAccountInfo.vue";
-import groupedBarGraph from "./components/groupedBarGraph.vue";
-import monthlyStats from "./components/monthly-stats";
-
 export default {
-  name: "App",
-
-  components: {
-    reportCard,
-    transactionHistory,
-    sidebarMenu,
-    bankAccountInfoVue,
-    groupedBarGraph,
-    monthlyStats,
+  data() {
+    return {};
+  },
+  mounted() {
+   
   },
 };
 </script>
 
 <style lang="scss">
-@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
-
 body {
-  background: #f4f3fa;
-  font-family: "Montserrat";
+  overflow: hidden;
 }
 
-.main {
-  display: grid;
-  grid-template-columns: minmax(0, 0.5fr) minmax(0, 1fr) minmax(0, 1fr);
-  grid-template-rows: minmax(267px, 1fr) minmax(145px, 0.7fr) minmax(0, 2fr);
-  grid-column-gap: 20px;
-  grid-row-gap: 20px;
+.form {
+  width: 70%;
+  min-width: 350px;
+  max-width: 500px;
+  padding: 23px 32px;
 
-  padding: 20px 20px 0 0;
-  height: 100vh;
+  border-radius: 20px;
+  background: #ffffff;
+
+  color: black;
+
+  &__title {
+    font-size: 2em;
+  }
+  &__list-fields {
+    display: grid;
+    gap: 24px;
+  }
+  &__columns-box {
+    display: grid;
+  }
+
+  &__field-title {
+    text-align: left;
+  }
+  &__field {
+    padding: 3px;
+    margin-top: 2px;
+
+    outline: #007aff;
+  }
+
+  &__password-error {
+    margin-top: 2px;
+
+    color: #fc4e68;
+    text-align: left;
+  }
+
+  &__btn {
+    padding: 8px;
+
+    background: #007aff;
+    border: none;
+    border-radius: 8px;
+
+    cursor: pointer;
+
+    &:hover {
+      background: #298ef9;
+    }
+  }
+  .row {
+    width: 100%;
+    justify-content: space-between;
+    display: flex;
+  }
 }
 
-.sidebar-menu-wrapper {
-  grid-area: 1 / 1 / 4 / 2;
+.form-enter-active,
+.form-leave-active {
+  transition: all 0.3s ease-in-out;
 }
-.bank-account-info-wrapper {
-  grid-area: 1 / 2 / 2 / 3;
+.form-leave-active {
+  transition-delay: 0.25s;
 }
-.grouped-bar-graph-wrapper {
-  grid-area: 1 / 3 / 2 / 4;
-}
-.report-cards-wrapper {
-  display: flex;
-  align-items: center;
 
-  column-gap: 20px;
+.form-enter-from,
+.form-leave-to {
+  transform: translateY(30px);
+  opacity: 0;
+}
 
-  justify-content: space-between;
-  grid-area: 2 / 2 / 3 / 4;
+.form-enter-active .inner,
+.form-leave-active .inner {
+  transition: all 0.3s ease-in-out;
 }
-.transaction-history-wrapper {
-  grid-area: 3 / 2 / 4 / 3;
+.form-enter-active .inner {
+  transition-delay: 0.25s;
 }
-.monthly-stats-wrapper {
-  grid-area: 3 / 3 / 4 / 4;
+
+.form-enter-from .inner,
+.form-leave-to .inner {
+  transform: translateX(30px);
+
+  opacity: 0.01;
 }
 </style>

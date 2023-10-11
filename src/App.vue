@@ -1,11 +1,11 @@
 <template>
-    <router-view v-slot="{ Component }">
-      <transition name="form" mode="out-in">
-        <keep-alive>
-          <component :is="Component" />
-        </keep-alive>
-      </transition>
-    </router-view>
+  <router-view v-slot="{ Component }">
+    <transition name="form" mode="out-in">
+      <keep-alive>
+        <component :is="Component" />
+      </keep-alive>
+    </transition>
+  </router-view>
 </template>
 
 <script>
@@ -14,7 +14,7 @@ export default {
     return {};
   },
   mounted() {
-   
+    $router.push({ name: "login" });
   },
 };
 </script>

@@ -36,7 +36,7 @@ export default {
 
     runIfCodeIsCorrect(confirmationСode) {
       alert(`Код ${confirmationСode} неверный`);
-      this.$router.push("/register");
+      this.$router.push({ name: "register" });
     },
 
     runIfCodeIsWrong(confirmationСode) {

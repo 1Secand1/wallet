@@ -38,7 +38,10 @@
 
         <p class="">
           Don’t have account?
-          <router-link to="/register">Create account</router-link>
+
+          <router-link to="/register">
+            Go to Register
+          </router-link>
         </p>
       </ul>
     </form>
@@ -67,7 +70,7 @@ export default {
     passwordValidation() {
       if (this.password == this.TESTcorrectPassword) {
         this.isWrongPassword = false;
-        this.$router.push("/Dashboard");
+        this.$router.push({ name: "dashboard" });
       } else {
         this.isWrongPassword = true;
       }

@@ -27,14 +27,16 @@
         </li>
 
         <button class="form__btn" type="submit">
-          <router-link style="color: white" to="/confirmation">
+          <router-link style="color: white" :to="{ name: ' confirmation ' }">
             Зарегистрироватся
           </router-link>
         </button>
 
         <p class="">
           I have an account ?
-          <router-link to="/login">proceed to authorization</router-link>
+          <router-link :to="{ name: 'login' }"
+            >proceed to authorization
+          </router-link>
         </p>
       </ul>
     </form>

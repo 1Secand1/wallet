@@ -36,12 +36,12 @@ export default {
 
     runIfCodeIsCorrect(confirmationСode) {
       alert(`Код ${confirmationСode} неверный`);
-      this.$router.push({ name: "register" });
+      this.$router.push({ name: "registration" });
     },
 
     runIfCodeIsWrong(confirmationСode) {
       alert(`Код ${confirmationСode} верный !`);
-      this.$router.push("/login");
+      this.$router.push({ name: "login" });
     },
   },
 };

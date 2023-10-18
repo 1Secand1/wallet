@@ -40,4 +40,16 @@ const router = createRouter({
   routes,
 });
 
+router.beforeEach((to, from) => {
+  const authorization = localStorage.getItem("authorization");
+  console.log(authorization);
+
+  if (!authorization && to.name === "dashboard") {
+    console.log("Вы не авторизованы");
+    return { path: from.path };
+  }
+
+  return true;
+});
+
 export default router;

@@ -66,6 +66,7 @@ export default {
     monthlyStats,
   },
 };
+
 </script>
 
 <style lang="scss">

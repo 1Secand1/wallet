@@ -1,55 +1,46 @@
 <template>
   <AuthFormWrapperVue>
-    <form class="form" action="">
-      <h2 class="form__title">Регистрация</h2>
-
+    <AuthForm formTitle="Регистрация">
       <ul class="form__list-fields">
-        <li class="form__columns-box">
-          <label class="form__field-title" for="login">Логин</label>
-          <input class="form__field" type="text" id="login" />
-        </li>
+        <AuthNamedInputField label="Login" />
 
-        <li class="form__columns-box">
-          <label class="form__field-title" for="email">Email</label>
-          <input class="form__field" type="email" id="email" />
-        </li>
+        <AuthNamedInputField label="Email" />
 
-        <li class="form__columns-box">
-          <label class="form__field-title" for="password">Пароль</label>
-          <input class="form__field" type="password" id="password" />
-        </li>
+        <AuthNamedInputField label="Password" />
 
-        <li class="form__columns-box">
-          <label class="form__field-title" for="repetitionPassword"
-            >Подтверждение пароля</label
-          >
-          <input class="form__field" type="password" id="repetitionPassword" />
-        </li>
+        <AuthNamedInputField label="Password confirmation" />
 
-        <button class="form__btn" type="submit">
-          <router-link style="color: white" :to="{ name: ' confirmation ' }">
+        <AuthFormBtn>
+          <router-link style="color: white" :to="{ name: 'confirmation' }">
             Зарегистрироватся
           </router-link>
-        </button>
+        </AuthFormBtn>
 
-        <p class="">
-          I have an account ?
-          <router-link :to="{ name: 'login' }"
-            >proceed to authorization
-          </router-link>
-        </p>
+        <AuthFormRedirectLink nameRouter="login">
+          <template v-slot:text> I have an account ? </template>
+          <template v-slot:linkText> proceed to authorization </template>
+        </AuthFormRedirectLink>
       </ul>
-    </form>
+    </AuthForm>
   </AuthFormWrapperVue>
 </template>
 
 <script>
-import AuthFormWrapperVue from "../components/AuthFormWrapper.vue";
+import AuthFormWrapperVue from "@/components/AuthFormWrapper.vue";
+import AuthNamedInputField from "../components/AuthNamedInputField.vue";
+import AuthForm from "@/components/AuthForm";
+import AuthFormBtn from "@/components/AuthFormBtn";
+import AuthFormRedirectLink from "@/components/AuthFormRedirectLink";
+
 export default {
   name: "registration",
 
   components: {
     AuthFormWrapperVue,
+    AuthNamedInputField,
+    AuthForm,
+    AuthFormBtn,
+    AuthFormRedirectLink,
   },
 
   data() {

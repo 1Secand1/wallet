@@ -1,77 +1,57 @@
 <template>
   <AuthFormWrapperVue>
-    <form class="form" action="">
-      <h2 class="form__title">Авторизация</h2>
-
+    <AuthForm formTitle="Авторизация">
       <ul class="form__list-fields">
-        <li class="form__columns-box">
-          <label class="form__field-title" for="email">Email</label>
-          <input class="form__field" type="email" name="" id="email" />
-        </li>
+        <AuthNamedInputField label="Email" />
 
-        <li class="form__columns-box">
-          <div class="row">
-            <label class="form__field-title" for="password">Пароль</label>
-            <a href="">Forgot password?</a>
-          </div>
+        <AuthNamedInputField label="Password" v-model="password" />
 
-          <input
-            class="form__field"
-            v-model="password"
-            type="password"
-            name=""
-            id="password"
-          />
-          <p class="form__password-error" v-if="isWrongPassword">
-            Не верный пароль
-          </p>
-        </li>
+        <AuthFormBtn @click="passwordValidation"> Login </AuthFormBtn>
 
-        <button
-          style="color: white"
-          @click.prevent="passwordValidation"
-          class="form__btn"
-          type="submit"
-        >
-          Login
-        </button>
-
-        <p class="">
-          Don’t have account?
-
-          <router-link to="/register">
-            Go to Register
-          </router-link>
-        </p>
+        <AuthFormRedirectLink nameRouter="registration">
+          <template v-slot:text> Don’t have account? </template>
+          <template v-slot:linkText>Go to Register </template>
+        </AuthFormRedirectLink>
       </ul>
-    </form>
+    </AuthForm>
   </AuthFormWrapperVue>
 </template>
 
 <script>
-import AuthFormWrapperVue from "../components/AuthFormWrapper.vue";
+import AuthFormWrapperVue from "@/components/AuthFormWrapper.vue";
+import AuthNamedInputField from "@/components/AuthNamedInputField.vue";
+import AuthForm from "@/components/AuthForm";
+import AuthFormBtn from "@/components/AuthFormBtn";
+import AuthFormRedirectLink from "@/components/AuthFormRedirectLink";
 
 export default {
   name: "Authorization",
 
   components: {
     AuthFormWrapperVue,
+    AuthNamedInputField,
+    AuthForm,
+    AuthFormBtn,
+    AuthFormRedirectLink,
   },
 
   data() {
     return {
-      TESTcorrectPassword: "adminaboba",
+      TESTcorrectPassword: "1",
       password: "",
       isWrongPassword: false,
     };
   },
 
-  computed: {
+  methods: {
     passwordValidation() {
       if (this.password == this.TESTcorrectPassword) {
+        localStorage.setItem("authorization", true);
         this.isWrongPassword = false;
         this.$router.push({ name: "dashboard" });
       } else {
+        console.log("нельзя");
+        localStorage.setItem("authorization", "");
         this.isWrongPassword = true;
       }
 
